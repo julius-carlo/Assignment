@@ -1,78 +1,51 @@
-<?php 
-$result = "";
-class calculator
-{
-    var $a;
-    var $b;
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+</head>
 
-    function checkopration($oprator)
-    {
-        switch($oprator)
-        {
-            case '+':
-            return $this->a + $this->b;
+<body>
+
+<form>
+    <input type="text" name="num1" placeholder="Number 1">
+    <input type="text" name="num2" placeholder="Number 2">
+    <select name="operator">
+        <option>None</option>
+        <option>Add</option>
+        <option>Subtract</option>
+        <option>Multiply</option>
+        <option>Divide</option>
+    </select>
+    <br>
+    <button type="submit"name="submit" value="submit">Calculate</button>
+</form>
+<p>The answer is:</p>
+<?php
+    if(isset($_GET['submit'])){
+       $result1 = $_GET['num1'];
+       $result2 = $_GET['num2'];
+       $operator = $_GET['operator'];
+        switch ($operator) {
+            case "None":
+                echo "You need to select a method";
             break;
-
-            case '-':
-            return $this->a - $this->b;
+            case "Add":
+                echo $result1 + $result2;
             break;
-
-            case '*':
-            return $this->a * $this->b;
+            case "Subtract":
+                echo $result1 - $result2;
             break;
-
-            case '/':
-            return $this->a / $this->b;
+            case "Multiply":
+                echo $result1 * $result2;
             break;
-
-            default:
-            return "Sorry No command found";
-        }   
+            case "Divide":
+                echo $result1 / $result2;
+            break;
+        }
     }
-    function getresult($a, $b, $c)
-    {
-        $this->a = $a;
-        $this->b = $b;
-        return $this->checkopration($c);
-    }
-}
-
-$cal = new calculator();
-if(isset($_POST['submit']))
-{   
-    $result = $cal->getresult($_POST['n1'],$_POST['n2'],$_POST['op']);
-}
 ?>
 
-<form method="post">
-<table align="center">
-    <tr>
-        <td><strong><?php echo $result; ?><strong></td>
-    </tr>
-    <tr>
-        <td>Enter 1st Number</td>
-        <td><input type="text" name="n1"></td>
-    </tr>
+</body>
 
-    <tr>
-        <td>Enter 2nd Number</td>
-        <td><input type="text" name="n2"></td>
-    </tr>
-
-    <tr>
-        <td>Select Operator</td>
-        <td><select name="op">
-            <option value="+">+</option>
-            <option value="-">-</option>
-            <option value="*">*</option>
-            <option value="/">/</option>
-        </select></td>
-    </tr>
-
-    <tr>
-        <td></td>
-        <td><input type="submit" name="submit" value="                =                "></td>
-    </tr>
-
-</table>
-</form>
+</html>
